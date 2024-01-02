@@ -18,14 +18,14 @@
 
 # COMMAND ----------
 
-scopo-kv-bootcamp-prd-wsy
+scopo-kv-bootcamp-prd-rafa
 
 # COMMAND ----------
 
 dbutils.fs.mount(
-    source = "wasbs://sandbox@dlsbootcampprdwsy.blob.core.windows.net"
-    ,mount_point = "/mnt/sandbox/"
-    ,extra_configs = {"fs.azure.account.key.dlsbootcampprdwsy.blob.core.windows.net" :dbutils.secrets.get(scope = "scopo-kv-bootcamp-prd-wsy", key = "secret-dlsbootcampprdwsy")}
+    source = "wasbs://raw@dlsbootcampprdrafael.blob.core.windows.net/"
+    ,mount_point = "/mnt/raw/"
+    ,extra_configs = {"fs.azure.account.key.dlsbootcampprdrafael.blob.core.windows.net" :dbutils.secrets.get(scope = "scopo-kv-bootcamp-prd-rafa", key = "secret-dlsbootcampprdrafael1")}
 )
 
 # COMMAND ----------
@@ -46,7 +46,7 @@ dbutils.fs.unmount( f"/mnt/transient/")
 
 # COMMAND ----------
 
-config =  {"fs.azure.account.key.dlsbootcampprdwsy.blob.core.windows.net" :dbutils.secrets.get(scope = "scopo-kv-bootcamp-prd-wsy", key = "secret-dlsbootcampprdwsy")}
+config =  {"fs.azure.account.key.dlsbootcampprdrafael.blob.core.windows.net" :dbutils.secrets.get(scope = "scopo-kv-bootcamp-prd-rafa", key = "secret-dlsbootcampprdrafael1")}
 
 # COMMAND ----------
 
@@ -61,7 +61,7 @@ def mount_diretorio_lake(lst_diretorios):
     try:        
         for diretorio in lst_diretorios:
             dbutils.fs.mount(
-                source = f"wasbs://{diretorio}@dlsbootcampprdwsy.blob.core.windows.net"
+                source = f"wasbs://{diretorio}@dlsbootcampprdrafael.blob.core.windows.net"
                 ,mount_point = f"/mnt/{diretorio}/"
                 ,extra_configs = config
             )
